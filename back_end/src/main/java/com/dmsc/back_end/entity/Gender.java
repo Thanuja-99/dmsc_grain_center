@@ -1,7 +1,5 @@
 package com.dmsc.back_end.entity;
 
-import java.time.LocalDate;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -9,19 +7,13 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Data;
 
-
 @Entity
 @Data
-@Table(name="customer_type")
-public class CustomerType {
-
+@Table(name="gender")
+public class Gender {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int customerTypeId;
-    private String customerTypeName;
-    private boolean isActive;
-    private String enteredBy;
-    private LocalDate enteredDate;
-    private String updateBy;
-    private LocalDate updateDate;
+    private int genderId;
+    private String genderName;
 }

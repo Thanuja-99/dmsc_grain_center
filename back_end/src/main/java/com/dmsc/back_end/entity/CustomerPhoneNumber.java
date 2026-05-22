@@ -6,14 +6,15 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+
 
 @Entity
 @Data
-@Getter
-@Setter
+@Table(name="customer_phone_number")
 public class CustomerPhoneNumber{
 
     @Id
@@ -25,5 +26,9 @@ public class CustomerPhoneNumber{
     private LocalDate enteredDate;
     private String updateBy;
     private LocalDate updateDate;
+
+    @ManyToOne
+    @JoinColumn(name="Customer_customer_id")
+    private Customer customer;
 
 }
