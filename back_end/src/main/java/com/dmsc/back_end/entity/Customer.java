@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,14 +23,31 @@ public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "customer_id")
     private int customer_id;
+
+    @Column(name = "calling_name")
     private String callingName;
+
+    @Column(name = "cus_bd")
     private LocalDate cusBd;
+
+    @Column(name = "customer_note")
     private String customerNote;
+
+    @Column(name = "is_active")
     private boolean isActive;
+
+    @Column(name = "entered_by")
     private String enteredBy;
+
+    @Column(name = "entered_date")
     private LocalDate enteredDate;
+
+    @Column(name = "update_by")
     private String updateBy;
+    
+    @Column(name = "update_date")
     private LocalDate updateDate;
 
 
