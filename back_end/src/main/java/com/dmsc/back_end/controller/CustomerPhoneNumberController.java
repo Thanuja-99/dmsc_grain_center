@@ -40,15 +40,15 @@ public class CustomerPhoneNumberController {
 
     // Create phone number
     @PostMapping
-    public ResponseEntity<CustomerPhoneNumberDTO> createPhoneNumber(@RequestBody CustomerPhoneNumberDTO dto) {
-        CustomerPhoneNumberDTO saved = phoneNumberService.createPhoneNumber(dto);
+    public ResponseEntity<CustomerPhoneNumberDTO> createPhoneNumber(@RequestBody CustomerPhoneNumberDTO customerDTO) {
+        CustomerPhoneNumberDTO saved = phoneNumberService.createPhoneNumber(customerDTO);
         return new ResponseEntity<>(saved, HttpStatus.CREATED);
     }
 
     // Update phone number
     @PutMapping("/{id}")
-    public CustomerPhoneNumberDTO updatePhoneNumber(@PathVariable Integer id, @RequestBody CustomerPhoneNumberDTO dto) {
-        return phoneNumberService.updatePhoneNumber(id, dto);
+    public CustomerPhoneNumberDTO updatePhoneNumber(@PathVariable Integer id, @RequestBody CustomerPhoneNumberDTO customerDTO) {
+        return phoneNumberService.updatePhoneNumber(id, customerDTO);
     }
 
     // Delete phone number
