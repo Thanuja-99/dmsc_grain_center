@@ -2,8 +2,6 @@ package com.dmsc.back_end.entity;
 
 import java.time.LocalDate;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,12 +10,16 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
 @Entity
+@Table(name = "customer_phone_number")
 @Data
-@Table(name="customer_phone_number")
+@NoArgsConstructor
+@AllArgsConstructor
 public class CustomerPhoneNumber{
 
     @Id
@@ -25,7 +27,7 @@ public class CustomerPhoneNumber{
     @Column(name="customer_phone_number_id")
     private int customerPhoneNumberId;
 
-    @Column(name="customer_contact_number")
+    @Column(name="customer_phone_number",length = 10)
     private String customerPhoneNumber;
 
     @Column(name="is_active")
@@ -45,7 +47,6 @@ public class CustomerPhoneNumber{
 
     @ManyToOne
     @JoinColumn(name="Customer_customer_id")
-    @JsonIgnore
     private Customer customer;
 
 }
