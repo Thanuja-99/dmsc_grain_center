@@ -3,6 +3,8 @@ package com.dmsc.back_end.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,42 +15,47 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.dmsc.back_end.entity.Gender;
+import com.dmsc.back_end.dto.GenderDTO;
 import com.dmsc.back_end.service.GenderService;
 
 @RestController
 @RequestMapping("/api/genders")
-@CrossOrigin
+@CrossOrigin(origins = "*")
 public class GenderController {
 
     @Autowired
-    private GenderService genderService;
+    GenderService genderService;
 
-    
-    @PostMapping
-    public Gender createGender(@RequestBody Gender gender) {
-        return genderService.createGender(gender);
-    }
-
+    // Get all genders
     @GetMapping
-    public List<Gender> getAllGenders() {
+    public List<GenderDTO> getAllGenders() {
         return genderService.getAllGenders();
     }
-    
+
+    // Get gender by ID
     @GetMapping("/{id}")
-    public Gender getGenderById(@PathVariable int id) {
+    public GenderDTO getGenderById(@PathVariable Integer id) {
         return genderService.getGenderById(id);
     }
 
-    @PutMapping("/{id}")
-    public Gender updateGender(@PathVariable int id, Gender gender){
-        return genderService.updateGender(id, gender);
+    // Create gender
+    @PostMapping
+    public ResponseEntity<GenderDTO> createGender(@RequestBody GenderDTO genderDTO) {
+        GenderDTO saved = genderService.createGender(genderDTO);
+        return new ResponseEntity<>(saved, HttpStatus.CREATED);
     }
 
-    
-    @DeleteMapping("/{id}")
-    public void deleteGender(@PathVariable int id){
-        genderService.deleteGender(id);
+    // Update gender
+    @PutMapping("/{id}")
+    public GenderDTO updateGender(@PathVariable Integer id, @RequestBody GenderDTO genderDTO) {
+        return genderService.updateGender(id, genderDTO);
     }
-}    
+
+    // Delete gender
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteGender(@PathVariable Integer id) {
+        genderService.deleteGender(id);
+        return ResponseEntity.ok().build();
+    }
+}
 
