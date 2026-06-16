@@ -3,6 +3,8 @@ package com.dmsc.back_end.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.dmsc.back_end.entity.CustomerType;
+import com.dmsc.back_end.dto.CustomerTypeDTO;
 import com.dmsc.back_end.service.CustomerTypeService;
 
 @RestController
@@ -23,32 +25,37 @@ public class CustomerTypeController {
 
 
     @Autowired
-    private CustomerTypeService customerTypeService;
+    CustomerTypeService customerTypeService;
 
-    
-    @PostMapping
-    public CustomerType createCustomerType(@RequestBody CustomerType customerType) {
-        return customerTypeService.createCustomerType(customerType);
-    }
-
+    // Get all customer types
     @GetMapping
-    public List<CustomerType> getAllCustomerTypes() {
+    public List<CustomerTypeDTO> getAllCustomerTypes() {
         return customerTypeService.getAllCustomerTypes();
     }
-    
+
+    // Get customer type by ID
     @GetMapping("/{id}")
-    public CustomerType getCustomerTypeById(@PathVariable int id) {
+    public CustomerTypeDTO getCustomerTypeById(@PathVariable Integer id) {
         return customerTypeService.getCustomerTypeById(id);
     }
 
-    @PutMapping("/{id}")
-    public CustomerType updateCustomerType(@PathVariable int id, CustomerType customerType){
-        return customerTypeService.updateCustomerType(id, customerType);
+    // Create customer type
+    @PostMapping
+    public ResponseEntity<CustomerTypeDTO> createCustomerType(@RequestBody CustomerTypeDTO dto) {
+        CustomerTypeDTO saved = customerTypeService.saveCustomerType(dto);
+        return new ResponseEntity<>(saved, HttpStatus.CREATED);
     }
 
-    // DELETE
+    // Update customer type
+    @PutMapping("/{id}")
+    public CustomerTypeDTO updateCustomerType(@PathVariable Integer id, @RequestBody CustomerTypeDTO dto) {
+        return customerTypeService.updateCustomerType(id, dto);
+    }
+
+    // Delete customer type
     @DeleteMapping("/{id}")
-    public void deleteCustomerType(@PathVariable int id){
+    public ResponseEntity<Void> deleteCustomerType(@PathVariable Integer id) {
         customerTypeService.deleteCustomerType(id);
+        return ResponseEntity.ok().build();
     }
 }

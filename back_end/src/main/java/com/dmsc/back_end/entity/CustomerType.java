@@ -8,12 +8,16 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
 @Entity
+@Table(name = "customer_type")
 @Data
-@Table(name="customer_type")
+@NoArgsConstructor
+@AllArgsConstructor
 public class CustomerType {
 
     @Id
@@ -38,4 +42,9 @@ public class CustomerType {
 
     @Column(name = "update_date")
     private LocalDate updateDate;
+
+    public Boolean getIsActive() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getIsActive'");
+    }
 }

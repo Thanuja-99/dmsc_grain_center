@@ -2,16 +2,18 @@ package com.dmsc.back_end.service;
 
 import java.util.List;
 
-import com.dmsc.back_end.entity.CustomerType;
+import com.dmsc.back_end.dto.CustomerTypeDTO;
+
 
 public interface CustomerTypeService {
-    CustomerType createCustomerType(CustomerType customerType);
-
-    List<CustomerType> getAllCustomerTypes();
-
-    CustomerType getCustomerTypeById(int id);
-
-    CustomerType updateCustomerType(int id, CustomerType customerType);
-
+    
+    List<CustomerTypeDTO> getAllCustomerTypes();
+    
+    CustomerTypeDTO getCustomerTypeById(int id);
+    
+    CustomerTypeDTO saveCustomerType(CustomerTypeDTO dto);
+    
+    CustomerTypeDTO updateCustomerType(int id, CustomerTypeDTO dto);
+    
     void deleteCustomerType(int id);
 }
