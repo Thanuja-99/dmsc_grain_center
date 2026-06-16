@@ -2,16 +2,17 @@ package com.dmsc.back_end.service;
 
 import java.util.List;
 
-import com.dmsc.back_end.entity.Gender;
+import com.dmsc.back_end.dto.GenderDTO;
+
 
 public interface GenderService {
-    Gender createGender(Gender gender);
-
-    List<Gender> getAllGenders();
-
-    Gender getGenderById(int id);
-
-    Gender updateGender(int id, Gender gender);
-
+     List<GenderDTO> getAllGenders();
+    
+    GenderDTO getGenderById(int id);
+    
+    GenderDTO createGender(GenderDTO dto);
+    
+    GenderDTO updateGender(int id, GenderDTO dto);
+    
     void deleteGender(int id);
 }

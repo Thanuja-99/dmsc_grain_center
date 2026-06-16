@@ -1,10 +1,12 @@
 package com.dmsc.back_end.service.serviceImpl;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.dmsc.back_end.dto.GenderDTO;
 import com.dmsc.back_end.entity.Gender;
 import com.dmsc.back_end.repository.GenderRepository;
 import com.dmsc.back_end.service.GenderService;
@@ -13,38 +15,45 @@ import com.dmsc.back_end.service.GenderService;
 public class GenderServiceImpl implements GenderService{
 
     @Autowired
-    private GenderRepository genderRepository;
+    GenderRepository genderRepository;
 
     @Override
-    public Gender createGender(Gender gender) {
-        return genderRepository.save(gender);
+    public List<GenderDTO> getAllGenders() {
+        return genderRepository.findAll().stream()
+                .map(this::toDTO)
+                .collect(Collectors.toList());
     }
 
     @Override
-    public List<Gender> getAllGenders() {
-        return genderRepository.findAll();
+    public GenderDTO getGenderById(int id) {
+        Gender gender = genderRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Gender not found"));
+        return toDTO(gender);
     }
 
     @Override
-    public Gender getGenderById(int id) {
-        return genderRepository.findById(id).orElse(null);
+    public GenderDTO createGender(GenderDTO dto) {
+        Gender gender = new Gender();
+        gender.setGenderName(dto.getGenderName());
+        Gender saved = genderRepository.save(gender);
+        return toDTO(saved);
     }
 
     @Override
-    public Gender updateGender(int id, Gender gender) {
-
-        Gender existingGender = genderRepository.findById(id).orElse(null);
-
-        if (existingGender!= null) {
-            existingGender.setGenderName(gender.getGenderName());
-            return genderRepository.save(existingGender);
-        }
-
-        return null;
+    public GenderDTO updateGender(int id, GenderDTO dto) {
+        Gender gender = genderRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Gender not found"));
+        gender.setGenderName(dto.getGenderName());
+        Gender updated = genderRepository.save(gender);
+        return toDTO(updated);
     }
 
     @Override
     public void deleteGender(int id) {
         genderRepository.deleteById(id);
+    }
+
+    private GenderDTO toDTO(Gender gender) {
+        return new GenderDTO(gender.getGenderId(), gender.getGenderName());
     }
 }
