@@ -1,6 +1,7 @@
 package com.dmsc.back_end.entity;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -13,18 +14,22 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
 @Entity
+@Table(name = "customer")
 @Data
-@Table(name ="customer")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "customer_id")
-    private int customer_id;
+    private int customerId;
 
     @Column(name = "calling_name")
     private String callingName;
@@ -60,6 +65,6 @@ public class Customer {
     private Gender gender;
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
-    private List<CustomerPhoneNumber> phoneNumbers;
+    private List<CustomerPhoneNumber> phoneNumbers = new ArrayList<>();
 
 }
