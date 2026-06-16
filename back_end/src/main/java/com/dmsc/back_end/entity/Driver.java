@@ -54,16 +54,16 @@ public class Driver {
     @Column(name = "update_date")
     private LocalDate updateDate;
 
-    // @ManyToOne
-    // @JoinColumn(name = "Driver_Type_driver_id")
-    // private DriverType driverType;
+    @ManyToOne
+    @JoinColumn(name = "Driver_Type_driver_type_id")
+    private DriverType driverType;
 
     @ManyToOne
     @JoinColumn(name = "Gender_gender_id")
     private Gender gender;
 
-    // @OneToMany(mappedBy = "driver", cascade = CascadeType.ALL)
-    // private List<DriverPhoneNumber> phoneNumbers = new ArrayList<>();
+    @OneToMany(mappedBy = "driver", cascade = CascadeType.ALL)
+    private List<DriverPhoneNumber> phoneNumbers = new ArrayList<>();
 
 }
 
