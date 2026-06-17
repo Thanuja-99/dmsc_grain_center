@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class CustomerDTO {
 
-     
+
 
     private Integer customerId;
     private String callingName;
