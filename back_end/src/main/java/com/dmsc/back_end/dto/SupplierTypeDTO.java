@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class SupplierTypeDTO {
 
-    private int supplierTypeId;
+    private Integer supplierTypeId;
     private String supplierTypeName;
 }
