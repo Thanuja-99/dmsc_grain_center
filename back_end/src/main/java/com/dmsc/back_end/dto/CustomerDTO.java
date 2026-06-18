@@ -25,9 +25,9 @@ public class CustomerDTO {
     private LocalDate updateDate;
     
     private Integer customerTypeId;
-    private Integer genderId;
-    
     private String customerTypeName;
+
+    private Integer genderId;
     private String genderName;
     
     private List<String> phoneNumbers;
