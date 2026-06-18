@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ItemDTO {
-    private int itemId;
+    private Integer itemId;
 
     private String itemName;
 

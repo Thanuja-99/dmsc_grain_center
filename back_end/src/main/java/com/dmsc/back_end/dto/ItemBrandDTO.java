@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ItemBrandDTO {
-    private int itemBrandId;
+    private Integer itemBrandId;
 
     private String itemBrandName;
 
