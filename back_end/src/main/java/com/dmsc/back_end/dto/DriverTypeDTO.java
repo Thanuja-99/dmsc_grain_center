@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class DriverTypeDTO {
     
-    private int driverTypeId;
+    private Integer driverTypeId;
     private String driverTypeName;
 }
