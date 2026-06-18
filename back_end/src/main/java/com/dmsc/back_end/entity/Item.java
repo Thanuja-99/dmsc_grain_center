@@ -43,7 +43,7 @@ public class Item {
     private Double salesPrice;
 
     @Column(name = "quantity")
-    private String quantity;
+    private Integer quantity;
 
     @Column(name = "Manufacturing_date")
     private LocalDate manufacturingDate;
