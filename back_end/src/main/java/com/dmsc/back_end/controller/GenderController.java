@@ -24,7 +24,7 @@ import com.dmsc.back_end.service.GenderService;
 public class GenderController {
 
     @Autowired
-    GenderService genderService;
+    private GenderService genderService;
 
     // Get all genders
     @GetMapping
