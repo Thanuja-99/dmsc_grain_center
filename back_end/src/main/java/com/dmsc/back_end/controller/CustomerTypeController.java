@@ -25,7 +25,7 @@ public class CustomerTypeController {
 
 
     @Autowired
-    CustomerTypeService customerTypeService;
+    private CustomerTypeService customerTypeService;
 
     // Get all customer types
     @GetMapping

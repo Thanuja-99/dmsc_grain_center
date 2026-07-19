@@ -29,7 +29,7 @@ public class CustomerController {
     
 
     @Autowired
-    CustomerService customerService;
+    private CustomerService customerService;
 
 
 

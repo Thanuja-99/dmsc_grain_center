@@ -1,7 +1,6 @@
 package com.dmsc.back_end.service.serviceImpl;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -13,10 +12,12 @@ import com.dmsc.back_end.entity.Customer;
 import com.dmsc.back_end.entity.CustomerOrder;
 import com.dmsc.back_end.entity.CustomerOrderItem;
 import com.dmsc.back_end.entity.CustomerOrderStatus;
+import com.dmsc.back_end.entity.Item;
 import com.dmsc.back_end.repository.CustomerOrderItemRepository;
 import com.dmsc.back_end.repository.CustomerOrderRepository;
 import com.dmsc.back_end.repository.CustomerOrderStatusRepository;
 import com.dmsc.back_end.repository.CustomerRepository;
+import com.dmsc.back_end.repository.ItemRepository;
 import com.dmsc.back_end.service.CustomerOrderService;
 
 import jakarta.transaction.Transactional;
@@ -35,6 +36,9 @@ public class CustomerOrderServiceImpl implements CustomerOrderService {
 
     @Autowired
     private CustomerOrderItemRepository customerOrderItemRepository;
+
+    @Autowired
+    private ItemRepository itemRepository;
 
     // ================= GET BY ID =================
     @Override
@@ -121,13 +125,26 @@ public class CustomerOrderServiceImpl implements CustomerOrderService {
 
     // ================= DELETE (SOFT DELETE) =================
     @Override
+    @Transactional
     public void delete(int id) {
 
         CustomerOrder customerOrder = customerOrderRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Customer Order not found"));
 
-        customerOrder.setActive(false);
+        // Restore stock and soft delete order items
+        for (CustomerOrderItem orderItem : customerOrder.getItems()) {
 
+            Item item = orderItem.getItem();
+
+            item.setQuantity(item.getQuantity() + orderItem.getQty());
+            itemRepository.save(item);
+
+            orderItem.setActive(false);
+            customerOrderItemRepository.save(orderItem);
+        }
+
+        // Soft delete customer order
+        customerOrder.setActive(false);
         customerOrderRepository.save(customerOrder);
     }
 

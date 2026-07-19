@@ -24,7 +24,7 @@ import com.dmsc.back_end.service.CustomerPhoneNumberService;
 public class CustomerPhoneNumberController {
     
     @Autowired
-    CustomerPhoneNumberService phoneNumberService;
+    private CustomerPhoneNumberService phoneNumberService;
 
     // Get all phone numbers
     @GetMapping
