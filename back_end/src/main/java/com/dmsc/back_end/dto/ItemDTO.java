@@ -3,7 +3,6 @@ package com.dmsc.back_end.dto;
 import java.time.LocalDate;
 import java.util.List;
 
-import com.dmsc.back_end.entity.Item;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
