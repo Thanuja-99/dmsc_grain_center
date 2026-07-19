@@ -25,7 +25,7 @@ import com.dmsc.back_end.service.DriverTypeService;
 public class DriverTypeController{
 
     @Autowired
-    DriverTypeService driverTypeService;
+    private DriverTypeService driverTypeService;
 
     // Get All driver types
     @GetMapping

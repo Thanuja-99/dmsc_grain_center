@@ -25,7 +25,7 @@ import com.dmsc.back_end.service.DriverPhoneNumberService;
 public class DriverPhoneNumberController{
 
     @Autowired
-    DriverPhoneNumberService  driverPhoneNumberService;
+    private DriverPhoneNumberService  driverPhoneNumberService;
 
     // Get all phone numbers
     @GetMapping

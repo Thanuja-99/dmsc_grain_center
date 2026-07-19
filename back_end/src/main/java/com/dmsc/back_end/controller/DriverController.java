@@ -28,7 +28,7 @@ import lombok.RequiredArgsConstructor;
 public class DriverController{
 
     @Autowired
-    DriverService driverService;
+    private DriverService driverService;
 
     // Get all drivers
     @GetMapping
