@@ -28,7 +28,7 @@ import lombok.RequiredArgsConstructor;
 public class VehicleModelController {
 
     @Autowired
-    VehicleModelService vehicleModelService;
+    private VehicleModelService vehicleModelService;
 
     @GetMapping
     public List<VehicleModelDTO> getAllModels() {

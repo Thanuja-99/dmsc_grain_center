@@ -28,7 +28,7 @@ import lombok.RequiredArgsConstructor;
 public class VehicleTypeController {
 
     @Autowired
-    VehicleTypeService vehicleTypeService;
+    private VehicleTypeService vehicleTypeService;
     
 
     @GetMapping

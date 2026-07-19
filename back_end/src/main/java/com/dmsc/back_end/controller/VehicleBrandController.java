@@ -28,7 +28,7 @@ import lombok.RequiredArgsConstructor;
 public class VehicleBrandController {
 
     @Autowired
-    VehicleBrandService vehicleBrandService;
+    private VehicleBrandService vehicleBrandService;
 
     @GetMapping
     public List<VehicleBrandDTO> getAllBrands() {

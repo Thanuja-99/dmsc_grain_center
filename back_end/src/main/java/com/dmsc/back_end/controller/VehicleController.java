@@ -19,7 +19,7 @@ import lombok.RequiredArgsConstructor;
 public class VehicleController {
 
     @Autowired
-    VehicleService vehicleService;
+    private VehicleService vehicleService;
 
     // ================= GET ALL =================
     @GetMapping
