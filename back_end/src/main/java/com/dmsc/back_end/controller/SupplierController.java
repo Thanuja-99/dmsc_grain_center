@@ -29,7 +29,7 @@ public class SupplierController {
     
 
     @Autowired
-    SupplierService supplierService;
+    private SupplierService supplierService;
 
     // Get all Suppliers
     @GetMapping

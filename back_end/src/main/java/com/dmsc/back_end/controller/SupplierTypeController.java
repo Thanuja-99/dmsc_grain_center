@@ -26,7 +26,7 @@ import com.dmsc.back_end.service.SupplierTypeService;
 public class SupplierTypeController {
     
     @Autowired
-    SupplierTypeService supplierTypeService;
+    private SupplierTypeService supplierTypeService;
 
     // Get All supplier types
     @GetMapping

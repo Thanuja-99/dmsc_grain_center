@@ -24,7 +24,7 @@ import com.dmsc.back_end.dto.SupplierPhoneNumberDTO;
 public class SupplierPhoneNumberController {
     
    @Autowired
-   SupplierPhoneNumberService supplierPhoneNumberService;
+   private SupplierPhoneNumberService supplierPhoneNumberService;
 
    // Get all phone numbers
     @GetMapping
